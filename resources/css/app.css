@@ -1,0 +1,15 @@
+
+.content {
+    flex-grow: 1; /* El contenido principal crecerá para ocupar el espacio restante */
+    padding: 20px; /* Espacio interior para el contenido principal */
+}
+
+.nav {
+    z-index: 1;
+}
+
+.comida-imagen {
+    width: auto; /* Permite que el ancho se ajuste automáticamente */
+    height: 200px; /* Establece una altura fija para todas las imágenes */
+    object-fit: cover; /* Ajusta la imagen manteniendo la proporción de aspecto */
+}

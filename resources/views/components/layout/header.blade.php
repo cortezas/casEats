@@ -1,8 +1,8 @@
 <header class="w-full p-6 ">
-    <div class="navbar bg-base-300 rounded-xl">
+    <div class="navbar bg-amber-300 rounded-xl">
         @include('components.layout.nav')
         <div class="flex-1">
-            <a class="btn btn-ghost text-xl" href="#"><img id="logo-img" src="{{ asset('logo-lightmode.png') }}"
+            <a class="btn btn-ghost text-xl" href="/"><img id="logo-img" src="{{ asset('logo-lightmode.png') }}"
                                                            alt="Logo Claro" class="h-12 w-auto"></a>
         </div>
         <div class="flex-none gap-2">

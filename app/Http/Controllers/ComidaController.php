@@ -14,18 +14,20 @@ class ComidaController extends Controller
      * @param $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
      */
+
     public function index(Request $request)
     {
-        //
         $categoria = $request->query('categoria');
+
         if ($categoria) {
-            $comidas = Comida::where('categoria', $categoria)->get();
+            $comidas = Comida::where('categoria', $categoria)->with('restaurante')->get();
         } else {
-            $comidas = Comida::all();
-            $comidas = $comidas->shuffle();
+            $comidas = Comida::with('restaurante')->get()->shuffle();
         }
+
         return view("comidas.comida", ["comidas" => $comidas]);
     }
+
 
     /**
      * Show the form for creating a new resource.

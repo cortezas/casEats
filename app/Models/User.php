@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // En el modelo User
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class, 'id_cliente'); // Ajusta 'user_id' según el nombre de la columna en la tabla 'clientes' que referencia al usuario
+    }
 }

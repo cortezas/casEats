@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -33,18 +34,35 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'dir_cliente' => ['required', 'string'],
+            'tlf_cliente' => ['required', 'string'],
         ]);
 
+        // Crear el usuario
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+// Crear el cliente asociado al usuario
+        $cliente = new Cliente([
+            'nom_cliente' => $request->name,
+            'dir_cliente' => $request->dir_cliente,
+            'tlf_cliente' => $request->tlf_cliente,
+        ]);
+
+// Guardar el cliente asociado al usuario
+        $user->cliente()->save($cliente);
+
+// Evento de registro
         event(new Registered($user));
 
+// Iniciar sesión del usuario recién registrado
         Auth::login($user);
 
+// Redireccionar al usuario a la página de inicio
         return redirect('/');
+
     }
 }

@@ -86,4 +86,17 @@ class ComidaController extends Controller
         //
     }
 
+    public function mostrarComidasPorPrecio(Request $request)
+    {
+        // Obtener los valores de precio mínimo y máximo del formulario
+        $precioMinimo = $request->input('precio_minimo');
+        $precioMaximo = $request->input('precio_maximo');
+
+        // Filtrar las comidas por precio dentro del rango especificado
+        $comidas = Comida::whereBetween('precio', [$precioMinimo, $precioMaximo])->get();
+
+        // Pasar las comidas filtradas a la vista
+        return view('comidas.comida', ['comidas' => $comidas]);
+    }
+
 }

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Comida extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_comida'; // Para que no coja por defecto id al realizar la consulta
+    public $timestamps = false; // Para que no busque update_at
     protected $table="comidas";
     protected $fillable=['id_comida','nom_comida','descripcion','precio'];
 

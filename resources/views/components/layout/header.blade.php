@@ -1,9 +1,10 @@
-<header class="w-full p-6 ">
+<header class="w-full p-8 ">
     <div class="navbar bg-amber-300 rounded-xl">
         @include('components.layout.nav')
-        <div class="flex-1">
-            <a class="btn btn-ghost text-xl" href="/"><img id="logo-img" src="{{ asset('logo-lightmode.png') }}"
-                                                           alt="Logo Claro" class="h-12 w-auto"></a>
+        <div class="flex-1" >
+            <a class="text-xl" href="/" >
+                <img id="logo-img" src="{{ asset('logo-lightmode.png') }}" alt="Logo Claro" class="h-16 w-auto">
+            </a>
         </div>
         <div class="flex-none gap-2">
             <div class="form-control">
@@ -27,15 +28,19 @@
                         <span class="badge badge-sm indicator-item">8</span>
                     </div>
                 </div>
-                <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-                    <div class="card-body">
-                        <span class="font-bold text-lg">8 Items</span>
-                        <span class="text-info">Subtotal: $999</span>
+                <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-56 bg-base-100 shadow" id="cartContent">
+                    <div class="card-body flex justify-between items-center">
+                        <div class="flex items-center">
+                            <span class="font-bold text-lg" id="cartItemCount">0 Productos</span>
+                            <button class="btn btn-sm ml-2" onclick="limpiarCarrito()">Limpiar</button>
+                        </div>
+                        <span class="text-info" id="cartSubtotal">Precio total: 0.00€</span>
                         <div class="card-actions">
-                            <button class="btn btn-primary btn-block">View cart</button>
+                            <a href="{{ route('carritos.carrito') }}" class="btn btn-primary btn-block">Ver carrito</a>
                         </div>
                     </div>
                 </div>
+
             </div>
             @auth
 
@@ -70,3 +75,4 @@
         </div>
     </div>
 </header>
+

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comida;
 use App\Models\Restaurante;
 use App\Http\Requests\StoreRestauranteRequest;
 use App\Http\Requests\UpdateRestauranteRequest;
+use Illuminate\Http\Request;
 
 class RestauranteController extends Controller
 {
@@ -63,4 +65,18 @@ class RestauranteController extends Controller
     {
         //
     }
+
+    public function mostrarComidas($idRestaurante)
+    {
+        // Obtener el restaurante por su ID
+        $restaurante = Restaurante::findOrFail($idRestaurante);
+
+        // Obtener las comidas asociadas al restaurante
+        $comidas = $restaurante->comidas;
+
+        // Devolver la vista con las comidas del restaurante
+        return view('mostrar-comidas', compact('comidas'));
+    }
+
+
 }

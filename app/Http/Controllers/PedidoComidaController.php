@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PedidoComida;
 use App\Http\Requests\StorePedidoComidaRequest;
 use App\Http\Requests\UpdatePedidoComidaRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PedidoComidaController extends Controller
 {
@@ -14,6 +15,12 @@ class PedidoComidaController extends Controller
     public function index()
     {
         //
+        // Obtiene el ID del restaurante asociado al usuario autenticado
+        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; // Suponiendo que el campo se llame 'restaurante_id'
+
+        $comidasRestaurante = PedidoComida::where('RESTAURANTE_id_restaurante', $restauranteId)->get();
+
+        return view('jefe.pedido_de_venta', ['comidasRestaurante' => $comidasRestaurante]);
     }
 
     /**

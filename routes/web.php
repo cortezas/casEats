@@ -6,6 +6,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\ComidaController;
 use App\Http\Controllers\GestionDeProductosController;
 use App\Http\Controllers\MesaController;
+use App\Http\Controllers\PedidoComidaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepartidorController;
@@ -33,6 +34,8 @@ Route::resource("restaurantes", RestauranteController::class);
 Route::get('/carrito', [CarritoController::class, 'index'])->name('carritos.carrito');
 
 Route::get('/gestion_de_productos', [GestionDeProductosController::class, 'index'])->name('jefe.gestion_de_productos');
+
+Route::get('/pedido_de_venta', [PedidoComidaController::class, 'index'])->name('jefe.pedido_de_venta');
 
 Route::put('/actualizar-precio/{id_comida}', [GestionDeProductosController::class, 'updatePrecio'])->name('actualizar_precio');
 

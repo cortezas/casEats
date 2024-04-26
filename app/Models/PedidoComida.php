@@ -9,7 +9,7 @@ class PedidoComida extends Model
 {
     protected $table = 'pedido_comida'; // Especifica el nombre de la tabla si no sigue la convención de nombres de Eloquent
 
-    protected $fillable = ['cantidad', 'COMIDA_id_comida', 'PEDIDO_id_pedido']; // Especifica los campos que se pueden asignar masivamente
+    protected $fillable = ['cantidad', 'COMIDA_id_comida', 'PEDIDO_id_pedido', 'validado', 'RESTAURANTE_id_restaurante']; // Especifica los campos que se pueden asignar masivamente
 
     public $timestamps = false; // Si no necesitas los campos de timestamps created_at y updated_at en esta tabla
 
@@ -23,5 +23,10 @@ class PedidoComida extends Model
     public function pedido()
     {
         return $this->belongsTo(Pedido::class, 'PEDIDO_id_pedido');
+    }
+
+    public function restaurante()
+    {
+        return $this->belongsTo(Restaurante::class, 'RESTAURANTE_id_restaurante');
     }
 }

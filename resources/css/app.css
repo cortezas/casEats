@@ -14,3 +14,64 @@
     object-fit: cover; /* Ajusta la imagen manteniendo la proporción de aspecto */
 }
 
+/* Estilos CSS para la vista de gestión de pedidos */
+.container {
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.order-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.order-header {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.order-details {
+    padding: 20px;
+}
+
+.order-details h2 {
+    margin-bottom: 10px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.order-item-content {
+    flex: 1;
+}
+
+.order-item-status {
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-weight: bold;
+}
+
+.order-address {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-top: 1px solid #e0e0e0;
+}

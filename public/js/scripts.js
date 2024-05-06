@@ -4,6 +4,89 @@ document.addEventListener('DOMContentLoaded', function() {
     const restaurantesCheckbox = document.querySelectorAll('.restaurante-checkbox');
     const actualizarPrecioButtons = document.querySelectorAll('.btnActualizarPrecio');
     const eliminarProductoForms = document.querySelectorAll('#formEliminarProducto');
+    const btnValidarProducto = document.querySelectorAll('.btnValidarProducto');
+    const btnCancelarPedido = document.querySelectorAll('.btnCancelarPedido');
+    const btnModificarEstado = document.querySelectorAll('.btnModificarEstado');
+
+    btnModificarEstado.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Obtener el formulario asociado al botón clickeado
+            const form = btn.closest('form');
+
+
+            // Muestra la ventana de confirmación de SweetAlert2
+            Swal.fire({
+                title: 'Selecciona un nuevo estado',
+                input: 'select',
+                inputOptions: {
+                    'sin preparar': 'Sin preparar',
+                    'en cocina': 'En cocina',
+                    'enviando': 'Enviando',
+                    'entregado': 'Entregado',
+                    'pagado': 'Pagado'
+                },
+                inputPlaceholder: 'Selecciona un estado',
+                showCancelButton: true,
+                confirmButtonText: 'Modificar',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                // Si el usuario confirma y selecciona un estado, envía la solicitud al servidor
+                if (result.isConfirmed) {
+                    // Si se confirma la acción, envía el formulario asociado
+                    form.querySelector('#estado_input').value = result.value;
+                    form.submit();
+                }
+            });
+        });
+    });
+
+
+    btnCancelarPedido.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Obtener el formulario asociado al botón clickeado
+            const form = btn.closest('form');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Quieres eliminar el pedido?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma la acción, envía el formulario asociado
+                    form.submit();
+                }
+            });
+        });
+    });
+
+    btnValidarProducto.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Obtener el formulario asociado al botón clickeado
+            const form = btn.closest('form');
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: '¿Quieres validar el pedido?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, actualizar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Si se confirma la acción, envía el formulario asociado
+                    form.submit();
+                }
+            });
+        });
+    });
+
+
+
 
     eliminarProductoForms.forEach(function(form) {
         form.addEventListener('submit', function(event) {

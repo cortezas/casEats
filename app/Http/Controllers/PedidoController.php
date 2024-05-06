@@ -41,6 +41,7 @@ class PedidoController extends Controller
             $pedidoComida->PEDIDO_id_pedido = $pedidoId;
             $pedidoComida->validado = 0;
             $pedidoComida->RESTAURANTE_id_restaurante = $item['restaurante'];
+            $pedidoComida->estado = "sin preparar";
             $pedidoComida->save();
         }
 

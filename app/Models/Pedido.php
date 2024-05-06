@@ -28,4 +28,6 @@ class Pedido extends Model
     {
         return $this->belongsTo(Repartidor::class, 'REPARTIDOR_id_repartidor', 'id_repartidor');
     }
+
+
 }

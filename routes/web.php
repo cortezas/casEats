@@ -37,6 +37,22 @@ Route::get('/gestion_de_productos', [GestionDeProductosController::class, 'index
 
 Route::get('/pedido_de_venta', [PedidoComidaController::class, 'index'])->name('jefe.pedido_de_venta');
 
+Route::get('/listado_de_pedidos/{id_pedido?}', [PedidoComidaController::class, 'listadoPorPedido'])->name('listado_de_pedidos');
+
+Route::get('/seguimiento_de_pedido', [PedidoComidaController::class, 'seguimientoPedidosRepartidor'])->name('seguimiento_de_pedido');
+
+Route::get('/gestion_de_productos_repar/{id_pedido?}', [PedidoComidaController::class, 'listadoPorPedidoRepar'])->name('repartidor.gestion_de_productos_repar');
+
+Route::get('/listado_de_pedidos', [PedidoComidaController::class, 'listadoDePedidos'])->name('jefe.listado_de_pedidos');
+
+Route::get('/gestion_de_productos_repar', [PedidoComidaController::class, 'listadoDePedidosRepartidor'])->name('repartidor.gestion_de_productos_repar');
+
+Route::put('/pedido_de_venta/{pedido_id_comida}', [PedidoComidaController::class, 'update'])->name('pedido_de_venta.update');
+
+Route::put('/seguimiento_de_pedido/{pedido_id_comida}', [PedidoComidaController::class, 'updateRepartidor'])->name('modificar_estado_repar');
+
+Route::delete('/pedido_de_venta/{pedido_id_comida}', [PedidoComidaController::class, 'destroy'])->name('pedido_de_venta.destroy');
+
 Route::put('/actualizar-precio/{id_comida}', [GestionDeProductosController::class, 'updatePrecio'])->name('actualizar_precio');
 
 Route::delete('/eliminar-comida/{id_comida}', [GestionDeProductosController::class, 'eliminarComida'])->name('eliminar_comida');

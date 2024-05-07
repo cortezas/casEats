@@ -41,6 +41,10 @@ Route::get('/listado_de_pedidos/{id_pedido?}', [PedidoComidaController::class, '
 
 Route::get('/seguimiento_de_pedido', [PedidoComidaController::class, 'seguimientoPedidosRepartidor'])->name('seguimiento_de_pedido');
 
+Route::get('/seguimiento_de_pedido_cli', [PedidoComidaController::class, 'seguimientoPedidosCliente'])->name('seguimiento_de_pedido_cli');
+
+Route::get('/mis_pedidos_cli', [PedidoComidaController::class, 'listadoPedidosCliente'])->name('mis_pedidos_cli');
+
 Route::get('/gestion_de_productos_repar/{id_pedido?}', [PedidoComidaController::class, 'listadoPorPedidoRepar'])->name('repartidor.gestion_de_productos_repar');
 
 Route::get('/listado_de_pedidos', [PedidoComidaController::class, 'listadoDePedidos'])->name('jefe.listado_de_pedidos');
@@ -59,7 +63,9 @@ Route::delete('/eliminar-comida/{id_comida}', [GestionDeProductosController::cla
 
 Route::post('/realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar.pedido');
 
+Route::get('/reservar_mesa_cli', [MesaController::class, 'index'])->name('reservar.mesa_cli');
 
+Route::put('/reservar-mesa_cli/{id_mesa}', [MesaController::class, 'reservarMesa'])->name('modificar_estado_mesa');
 
 
 Route::get('/', function () {

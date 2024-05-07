@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnCancelarPedido = document.querySelectorAll('.btnCancelarPedido');
     const btnModificarEstado = document.querySelectorAll('.btnModificarEstado');
 
+
     btnModificarEstado.forEach(btn => {
         btn.addEventListener('click', function() {
             // Obtener el formulario asociado al botón clickeado
@@ -394,6 +395,165 @@ function eliminarDelCarrito(comidaId) {
         mostrarContenidoCarrito();
     }
 }
+
+// Lógica del apartado Mesas
+function solicitarReserva(idMesa, estadoViernes, estadoSabado, diaSeleccionado) {
+    var formId = 'formModificarMesa' + idMesa;
+    var form = document.getElementById(formId);
+
+    var selectedDay = document.getElementById('select-dia').value;
+
+    // Verificar si el día seleccionado es viernes
+    if (selectedDay === 'viernes') {
+        // Verificar si la mesa está disponible el viernes (en verde)
+        if (estadoViernes === 'libre') {
+            Swal.fire({
+                title: "¿Quieres solicitar la reserva de la mesa?",
+                text: "Esta acción solicitará la reserva de la mesa seleccionada para el " + diaSeleccionado + ".",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, reservar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Actualizar el valor del campo oculto "dia" en el formulario
+                    form.querySelector('.dia').value = diaSeleccionado;
+                    // Enviar el formulario al servidor
+                    form.submit();
+                }
+            });
+        } else {
+            // Si la mesa no está disponible, mostrar un mensaje de error para el viernes
+            Swal.fire("¡La mesa no está disponible para reservar el viernes en este momento!", "", "error");
+        }
+    }
+    // Verificar si el día seleccionado es sábado
+    else if (selectedDay === 'sabado') {
+        // Verificar si la mesa está disponible el sábado (en verde)
+        if (estadoSabado === 'libre') {
+            Swal.fire({
+                title: "¿Quieres solicitar la reserva de la mesa?",
+                text: "Esta acción solicitará la reserva de la mesa seleccionada para el " + diaSeleccionado + ".",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, reservar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Actualizar el valor del campo oculto "dia" en el formulario
+                    form.querySelector('.dia').value = "sabado";
+                    // Enviar el formulario al servidor
+                    form.submit();
+                }
+            });
+        } else {
+            // Si la mesa no está disponible, mostrar un mensaje de error para el sábado
+            Swal.fire("¡La mesa no está disponible para reservar el sábado en este momento!", "", "error");
+        }
+    }
+}
+
+
+
+
+
+document.getElementById('select-dia').addEventListener('change', function() {
+    var selectedDay = this.value;
+    var mesas = document.querySelectorAll('.mesa');
+
+    mesas.forEach(function(mesa) {
+        var estado;
+        if (selectedDay === 'viernes') {
+            estado = mesa.dataset.estadoViernes;
+        } else if (selectedDay === 'sabado') {
+            estado = mesa.dataset.estadoSabado;
+        }
+
+        if (estado === 'libre') {
+            mesa.classList.remove('bg-red-500', 'bg-yellow-300');
+            mesa.classList.add('bg-green-500');
+        } else if (estado === 'ocupada') {
+            mesa.classList.remove('bg-green-500', 'bg-yellow-300');
+            mesa.classList.add('bg-red-500');
+        } else if (estado === 'pendiente') {
+            mesa.classList.remove('bg-green-500', 'bg-red-500');
+            mesa.classList.add('bg-yellow-300');
+        }
+    });
+});
+
+// Simular un evento de cambio al cargar la página para mostrar el estado de las mesas del viernes
+document.getElementById('select-dia').value = 'viernes';
+var event = new Event('change');
+document.getElementById('select-dia').dispatchEvent(event);
+
+
+// Filtrar las mesas al cargar la página
+window.onload = function() {
+    // Seleccionar un restaurante aleatorio
+    var listaRestaurantes = document.querySelectorAll('.restaurante-radio');
+    var restauranteAleatorio = listaRestaurantes[Math.floor(Math.random() * listaRestaurantes.length)];
+    restauranteAleatorio.checked = true;
+    filtrarMesas();
+    // Agregar la clase de animación de transición al contenedor del mapa
+    document.getElementById('mapa-mesas').classList.add('animacion-transicion');
+};
+
+// Función para filtrar mesas
+function filtrarMesas() {
+    var restauranteSeleccionado = document.querySelector('input[name="restaurante"]:checked').value;
+    var mesas = document.querySelectorAll('.mesa');
+    var rows = 2; // Número de filas
+    var cols = 5; // Número de columnas
+    var cellWidth = 1100 / cols; // Ancho de cada celda
+    var cellHeight = 500 / rows; // Alto de cada celda
+    var occupiedCells = new Set(); // Conjunto de celdas ocupadas
+
+    mesas.forEach(function(mesa) {
+        var idRestauranteMesa = mesa.getAttribute('data-restaurante');
+
+        if (restauranteSeleccionado === "" || restauranteSeleccionado === idRestauranteMesa) {
+            var x, y;
+            do {
+                // Asignar aleatoriamente una celda
+                var cellX = Math.floor(Math.random() * cols);
+                var cellY = Math.floor(Math.random() * rows);
+                // Calcular las coordenadas de la mesa dentro de la celda
+                x = cellX * cellWidth + Math.floor(Math.random() * (cellWidth - 100)) + 5; // Ajustar el rango para evitar superposiciones con otras mesas
+                y = cellY * cellHeight + Math.floor(Math.random() * (cellHeight - 100)) + 5; // Ajustar el rango para evitar superposiciones con otras mesas
+            } while (occupiedCells.has(cellX + "-" + cellY)); // Verificar si la celda está ocupada
+
+            // Agregar la celda ocupada al conjunto
+            occupiedCells.add(cellX + "-" + cellY);
+
+            mesa.style.display = "block";
+            mesa.style.left = x + "px";
+            mesa.style.top = y + "px";
+        } else {
+            mesa.style.display = "none";
+        }
+    });
+
+    // Remover la clase 'seleccionado' de todos los elementos
+    document.querySelectorAll('.restaurante-item').forEach(function(item) {
+        item.classList.remove('seleccionado');
+    });
+
+    // Agregar la clase 'seleccionado' al restaurante seleccionado
+    document.querySelector('input[name="restaurante"]:checked').closest('.restaurante-item').classList.add('seleccionado');
+}
+
+// Evento clic para los elementos de la lista de restaurantes
+var listaRestaurantes = document.getElementById("lista-restaurantes");
+listaRestaurantes.addEventListener("click", function(event) {
+    if (event.target.tagName === 'INPUT') {
+        filtrarMesas();
+    }
+});
 
 
 

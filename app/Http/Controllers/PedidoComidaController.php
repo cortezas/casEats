@@ -70,6 +70,39 @@ class PedidoComidaController extends Controller
         return view('repartidor.seguimiento_de_pedido', ['pedidosComidaRepartidor' => $pedidosComidaRepartidor]);
     }
 
+    public function seguimientoPedidosCliente()
+    {
+        // Obtiene el ID del repartidor asociado al usuario autenticado
+        $clienteId = Auth::user()->CLIENTE_id_cliente;
+
+        // Obtener los ID de los pedidos asociados al repartidor
+        $pedidosIds = Pedido::where('CLIENTE_id_cliente', $clienteId)->pluck('id_pedido')->toArray();
+
+        // Obtener los registros de PedidoComida asociados a los pedidos del repartidor
+        $pedidosComidaCliente = PedidoComida::whereIn('PEDIDO_id_pedido', $pedidosIds)->get();
+
+        // Retornar la vista con los registros de PedidoComida asociados al repartidor
+        return view('cliente.seguimiento_de_pedido_cli', ['pedidosComidaCliente' => $pedidosComidaCliente]);
+    }
+
+    public function listadoPedidosCliente()
+    {
+        // Obtiene el ID del repartidor asociado al usuario autenticado
+        $clienteId = Auth::user()->CLIENTE_id_cliente;
+        $clienteName = Auth::user()->name;
+
+        // Obtener los ID de los pedidos asociados al repartidor
+        $pedidosIds = Pedido::where('CLIENTE_id_cliente', $clienteId)->pluck('id_pedido')->toArray();
+
+        // Obtener los registros de PedidoComida asociados a los pedidos del repartidor
+        $pedidosComidaCliente = PedidoComida::whereIn('PEDIDO_id_pedido', $pedidosIds)->get();
+
+        // Retornar la vista con los registros de PedidoComida asociados al repartidor
+        return view('cliente.mis_pedidos_cli', ['pedidosComidaCliente' => $pedidosComidaCliente,
+            'clienteName' => $clienteName]);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

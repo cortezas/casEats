@@ -31,4 +31,15 @@ export default {
     },
     /*Añadimos el plugin de daisyui*/
     plugins: [forms, require("daisyui")],
+    daisyui: {
+        themes: [
+            {
+                mytheme: {
+
+                    "primary": "#a16207",
+
+                },
+            },
+        ],
+    },
 };

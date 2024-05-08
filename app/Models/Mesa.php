@@ -11,7 +11,7 @@ class Mesa extends Model
     protected $primaryKey = 'id_mesa'; // Para que no coja por defecto id al realizar la consulta
     protected $table="mesas";
     public $timestamps = false; // Para que no busque update_at
-    protected $fillable=['id_mesa','num_mesa','capacidad','ubicacion', 'RESTAURANTE_id_restaurante', 'estado_viernes', 'estado_sabado'];
+    protected $fillable=['id_mesa','num_mesa','capacidad','ubicacion', 'RESTAURANTE_id_restaurante', 'estado_viernes', 'estado_sabado', 'temp_infouser_viernes', 'temp_infouser_sabado'];
 
     public function restaurante()
     {

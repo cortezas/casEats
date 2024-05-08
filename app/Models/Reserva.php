@@ -17,4 +17,9 @@ class Reserva extends Model
     {
         return $this->belongsTo(Mesa::class, 'MESA_id_mesa', 'id_mesa');
     }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'CLIENTE_id_cliente', 'id_cliente');
+    }
 }

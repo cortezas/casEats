@@ -19,7 +19,7 @@
     </div>
 -->
     <div class="p-4">
-        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ml-4 ">Pedidos de venta</h1>
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white ml-4 ">Pedidos de venta</h1>
         <!-- Tarjetas de productos -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-4">
             @foreach($comidasRestaurante as $comida)
@@ -32,12 +32,12 @@
                             <form action="{{ route('pedido_de_venta.update', ['pedido_id_comida' => $comida->PEDIDO_id_pedido . '_' . $comida->COMIDA_id_comida]) }}" method="POST" class="mb-2" id="formCencelarPedido">
                                 @csrf
                                 @method('DELETE')
-                                <div class="flex items-center">
-                                    <button type="submit" class="flex items-center btn btn-ghost cursor-pointer duration-150 hover:text-red-500 btnCancelarPedido">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="h-8 w-8 cursor-pointer duration-150 hover:text-red-500">
+                                <div class="flex items-center dark:text-white">
+                                    <button type="submit" class="flex items-center btn btn-ghost cursor-pointer duration-150 hover:text-red-500 text-gray-900 dark:text-white btnCancelarPedido">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="dark:text-white h-8 w-8 cursor-pointer duration-150 ">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                         </svg>
-                                        <span>Cancelar Pedido</span>
+                                        <span class="dark:text-white">Cancelar Pedido</span>
                                     </button>
                                 </div>
                                 <script>
@@ -57,7 +57,7 @@
                             @csrf
                             @method('PUT')
                             <div class="flex items-center">
-                                <button type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-3 rounded-full btnValidarProducto">Crear Pedido de Venta</button>
+                                <button type="button" class="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 mt-3 rounded-full btnValidarProducto">Crear Pedido de Venta</button>
                             </div>
                             <script>
                                 @if(session('success'))

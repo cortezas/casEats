@@ -17,26 +17,27 @@
                 </ul>
                 <h3 class="mb-4 font-semibold text-gray-900 dark:text-white mt-6"><b>Filtrar por Precio</b></h3>
                 <form action="{{ route('filtrar_por_precio') }}" method="GET">
-                    <div class="flex items-center mb-4">
-                        <label for="precio_minimo" class="mr-2">Precio mínimo:</label>
+                    <div class="flex items-center mb-4 dark:text-white">
+                        <!--<label for="precio_minimo dark:text-white" class="mr-2">Precio mínimo:</label>-->
+                        <span class="text-gray-900 dark:text-white mr-2">Precio Mínimo</span>
                         <input id="precio_minimo" name="precio_minimo" type="number" class="border border-gray-300 rounded-md p-1" min="0" step="0.05" value="{{ request('precio_minimo', '0.90') }}">
                     </div>
                     <!-- Campo de entrada para el precio máximo -->
-                    <div class="flex items-center mb-4">
-                        <label for="precio_maximo" class="mr-2">Precio máximo:</label>
+                    <div class="flex items-center mb-4 dark:text-white">
+                        <span class="text-gray-900 dark:text-white mr-2">Precio Máximo</span>
                         <input id="precio_maximo" name="precio_maximo" type="number" class="border border-gray-300 rounded-md p-1" min="0" step="0.05" value="{{ request('precio_maximo', '19.95') }}">
                     </div>
                     <!-- Botón para aplicar el filtro -->
-                    <button type="submit" class="btn btn-primary mt-2">Aplicar precio</button>
+                    <button type="submit" class="btn bg-yellow-700 text-white font-bold py-2 px-4 rounded-full mr-4">Aplicar precio</button>
                 </form>
             </div>
 
             <div class="w-3/4">
-                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ml-4 ">Listado de productos</h1>
+                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl dark:text-white ml-4 ">Listado de productos</h1>
                 <!-- Caso 1: Cards horizontales -->
                 <div class="ml-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach($comidas as $key => $comida)
-                        <div id="comida-{{ $comida->id_comida }}" class="card card-side bg-white shadow-xl mb-4 comida-item" data-restaurante="{{ $comida->RESTAURANTE_id_restaurante }}" style="display: {{ $key < 4 ? 'block' : 'none' }}">
+                        <div id="comida-{{ $comida->id_comida }}" class="card card-side bg-pink-50 shadow-xl mb-4 comida-item border-2" data-restaurante="{{ $comida->RESTAURANTE_id_restaurante }}" style="display: {{ $key < 4 ? 'block' : 'none' }}">
                             <div class="flex flex-col justify-between h-full">
                                 <div>
                                     <figure>
@@ -53,10 +54,12 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-center p-2">
-                                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mr-2" onclick="agregarAlCarrito({{ $comida->id_comida }})">Agregar al carrito</button>
-                                    <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onclick="decrementCantidad({{ $comida->id_comida }})"> - </span>
-                                    <input type="number" class="w-16 py-1 text-center border rounded" id="cantidad{{ $comida->id_comida }}" value="1" min="1">
-                                    <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50" onclick="incrementCantidad({{ $comida->id_comida }})"> + </span>
+                                    <button class="btn bg-yellow-700  text-white font-bold py-2 px-4 rounded-full mr-4 dark:bg-gray-800" onclick="agregarAlCarrito({{ $comida->id_comida }})">Agregar al carrito</button>
+                                    <div class="flex items-center">
+                                        <button class="text-blue-500 hover:bg-blue-100 hover:text-white rounded-l px-3" onclick="decrementCantidad({{ $comida->id_comida }})">-</button>
+                                        <input class="w-16 py-1 text-center border border-gray-300 rounded" id="cantidad{{ $comida->id_comida }}" value="1" min="1">
+                                        <button class="text-blue-500 hover:bg-blue-100 hover:text-white rounded-r px-3" onclick="incrementCantidad({{ $comida->id_comida }})">+</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +67,7 @@
                 </div>
                 <div class="join ml-4 mt-4">
                     @for ($i = 1; $i <= ceil(count($comidas) / 12); $i++)
-                        <button class="join-item btn btn-square{{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
+                        <button class="join-item btn bg-yellow-700 {{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
                     @endfor
                 </div>
             </div>

@@ -67,6 +67,12 @@ Route::get('/reservar_mesa_cli', [MesaController::class, 'index'])->name('reserv
 
 Route::put('/reservar-mesa_cli/{id_mesa}', [MesaController::class, 'reservarMesa'])->name('modificar_estado_mesa');
 
+Route::get('/mesas_reservadas_jefe', [MesaController::class, 'mesasJefe'])->name('jefe.mesas_reservadas_jefe');
+
+Route::put('/mesas_reservadas_jefe/{id_mesa}', [MesaController::class, 'gestionMesasJefe'])->name('modificar_estado_mesa_jefe');
+
+Route::put('/mesas_reservadas_jefe', [MesaController::class, 'limpiarMesas'])->name('limpiar_mesas_jefe');
+
 
 Route::get('/', function () {
     return view('main');

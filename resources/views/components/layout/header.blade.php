@@ -7,6 +7,11 @@
             </a>
         </div>
         <div class="flex-none gap-2">
+            @auth
+                <div class="name mr-2 bg-yellow-700 text-white p-2 rounded-full">
+                    <span>¡Bienvenido, <b>{{ auth()->user()->name }}</b>!</span>
+                </div>
+            @endauth
             <div class="form-control">
                 <input type="text" placeholder="Buscar productos..."
                        class="input input-bordered input-primary w-full max-w-xs"/>
@@ -44,8 +49,6 @@
             </div>
             @auth
 
-                    <a href="{{route("alumnos.index")}}" class="btn  btn-sm  btn-primary">Alumnos</a>
-
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
@@ -58,8 +61,8 @@
                     <li>
                         <a class="justify-between">
                             Modo Oscuro
-                            <input id="toggle-darkmode" type="checkbox" value="synthwave"
-                                   class="toggle theme-controller"/>
+                            <input id="toggle-darkmode" type="checkbox" value="synthwave" class="toggle theme-controller" onchange="toggleDarkMode()">
+
                         </a>
                     </li>
                     <li>

@@ -6,7 +6,7 @@
 
 @section('contenido')
     <div class="p-4">
-        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ml-4 ">Gestión de Productos: {{$nombreRestaurante}}</h1>
+        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white ml-4 ">Gestión de Productos: {{$nombreRestaurante}}</h1>
         <!-- Tarjetas de productos -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-4">
             @foreach($comidas as $comida)

@@ -7,7 +7,7 @@
 @section('contenido')
     <div class="p-4">
         <div class="flex justify-between items-center ">
-            <h1 class="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ml-4">Listado de pedidos</h1>
+            <h1 class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white ml-4">Listado de pedidos</h1>
             <!-- Formulario de búsqueda por ID de pedido -->
             <div class="p-2 mb-4">
                 <form action="{{ route('listado_de_pedidos', ['id_pedido' => $id_pedido ?? null]) }}" method="GET">

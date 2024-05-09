@@ -51,7 +51,7 @@
                 <form method="POST" action="{{ route('limpiar_mesas_jefe') }}" class="mb-2 ml-auto" id="formLimpiarMesasJefe">
                     @csrf
                     @method('PUT')
-                    <button class="btn btn-primary ml-auto">Limpiar Mesas</button>
+                    <button class="btn bg-yellow-700 text-white ml-auto">Limpiar Mesas</button>
                     @if(session('success'))
                         <script>
                             Swal.fire({

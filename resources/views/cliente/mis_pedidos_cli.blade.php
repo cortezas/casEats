@@ -13,7 +13,7 @@
                 <form method="GET">
                     <label for="id_pedido" class="block mb-2">Filtrar por ID de Pedido:</label>
                     <input type="text" name="id_pedido" id="id_pedido" class="border border-gray-300 rounded-md p-2" placeholder="Ingrese el ID de Pedido">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2">Buscar</button>
+                    <button type="submit" class="bg-yellow-700 text-white px-4 py-2 rounded-md ml-2">Buscar</button>
                 </form>
                 @if(request()->has('id_pedido'))
                     <a class="text-blue-500 mt-2 block">Mostrar Todos</a>

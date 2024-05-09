@@ -61,7 +61,11 @@
                             <input type="hidden" name="datosPedido" value="{{ json_encode($datosPedido) }}">
 
                             <!-- Botón de enviar -->
-                            <button type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Realizar pedido</button>
+                            <div class="flex justify-cente">
+                                <button type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 mr-1">Realizar pedido</button>
+                                <button type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 ml-1">Pagar Online</button>
+                            </div>
+
                             <script>
                                 @if(session('success'))
                                 Swal.fire({

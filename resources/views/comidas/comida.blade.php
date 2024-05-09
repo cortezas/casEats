@@ -3,7 +3,7 @@
 @section("contenido")
     <div id="filtrosycomida" class="flex flex-col">
         <div class="flex p-4">
-            <div class="w-1/4 bg-gray-100 p-4 rounded-box" style="max-height: 80vh; overflow-y: auto;">
+            <div class="w-1/4 bg-gray-100 p-4 rounded-box border-2" style="max-height: 80vh; overflow-y: auto;">
                 <h3 class="mb-4 font-semibold text-gray-900 dark:text-white"><b>Filtrar por Restaurante</b></h3>
                 <ul class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     @foreach($restaurantes as $restaurante)
@@ -40,6 +40,13 @@
                         <div id="comida-{{ $comida->id_comida }}" class="card card-side bg-pink-50 shadow-xl mb-4 comida-item border-2" data-restaurante="{{ $comida->RESTAURANTE_id_restaurante }}" style="display: {{ $key < 4 ? 'block' : 'none' }}">
                             <div class="flex flex-col justify-between h-full">
                                 <div>
+                                    <div class="absolute top-0 right-0  bg-white rounded-bl-2xl rounded-tr-2xl">
+                                        <div class="rating" data-pedido-id="{{ $comida->id_comida }}">
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <input type="radio" name="rating-{{ $comida->id_comida }}" class="mask mask-star-2 bg-orange-400" />
+                                            @endfor
+                                        </div>
+                                    </div>
                                     <figure>
                                         <img id="imagenComida{{ $comida->id_comida }}" class="comida-imagen rounded-box w-full" src="{{ asset($comida->imagen) }}" alt="{{ $comida->nom_comida }}" data-imagen="{{ asset($comida->imagen) }}" />
                                     </figure>
@@ -67,7 +74,7 @@
                 </div>
                 <div class="join ml-4 mt-4">
                     @for ($i = 1; $i <= ceil(count($comidas) / 12); $i++)
-                        <button class="join-item btn bg-yellow-700 {{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
+                        <button class="join-item btn bg-yellow-700 text-white {{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
                     @endfor
                 </div>
             </div>
@@ -79,5 +86,24 @@
         swal("¡Pedido realizado!", "{{ session('success') }}", "success");
         limpiarCarrito();
         @endif
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ratingContainers = document.querySelectorAll('.rating');
+
+            ratingContainers.forEach(container => {
+                const idComida = container.getAttribute('data-pedido-id');
+                const savedRating = localStorage.getItem(`rating-${idComida}`);
+
+                if (savedRating) {
+                    const ratingInputs = container.querySelectorAll('input[type="radio"]');
+                    ratingInputs[savedRating - 1].checked = true;
+                } else {
+                    const ratingInputs = container.querySelectorAll('input[type="radio"]');
+                    const randomIndex = Math.floor(Math.random() * ratingInputs.length);
+                    ratingInputs[randomIndex].checked = true;
+                    localStorage.setItem(`rating-${idComida}`, randomIndex + 1);
+                }
+            });
+        });
     </script>
 @endsection

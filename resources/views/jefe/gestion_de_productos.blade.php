@@ -45,7 +45,7 @@
                             @method('PUT')
                             <div class="flex items-center">
                                 <input type="number" name="precio" id="number-input" value="{{ $comida->precio }}" step="0.01" aria-describedby="helper-text-explanation" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                <button type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full ml-2 btnActualizarPrecio">Actualizar</button>
+                                <button type="button" class="bg-yellow-700 text-white font-bold py-2 px-4 rounded-full ml-2 btnActualizarPrecio">Actualizar</button>
                             </div>
                             <script>
                                 @if(session('success'))

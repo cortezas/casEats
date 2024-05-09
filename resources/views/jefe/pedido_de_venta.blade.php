@@ -57,7 +57,7 @@
                             @csrf
                             @method('PUT')
                             <div class="flex items-center">
-                                <button type="button" class="btn btn-primary hover:bg-blue-600 text-white font-bold py-2 px-4 mt-3 rounded-full btnValidarProducto">Crear Pedido de Venta</button>
+                                <button type="button" class="btn bg-yellow-700 text-white font-bold py-2 px-4 mt-3 rounded-full btnValidarProducto">Crear Pedido de Venta</button>
                             </div>
                             <script>
                                 @if(session('success'))

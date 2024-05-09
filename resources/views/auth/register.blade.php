@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen bg-yellow-50">
 <div class="flex flex-col items-center justify-center h-full p-5 rounded-2xl">
     <!-- Logo -->
     <a class="text-xl" href="/" >

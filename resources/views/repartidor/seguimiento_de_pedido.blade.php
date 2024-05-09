@@ -14,7 +14,7 @@
 
                     <label for="id_pedido" class="block mb-2">Filtrar por ID de Pedido:</label>
                     <input type="text" name="id_pedido" id="id_pedido" class="border border-gray-300 rounded-md p-2" placeholder="Ingrese el ID de Pedido">
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2">Buscar</button>
+                    <button type="submit" class="bg-yellow-700 text-white px-4 py-2 rounded-md ml-2">Buscar</button>
                 </form>
                 @if(request()->has('id_pedido'))
                     <a href="{{ route('repartidor.gestion_de_productos_repar') }}" class="text-blue-500 mt-2 block">Mostrar Todos</a>
@@ -43,7 +43,7 @@
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="estado" id="estado_input">
-                                        <button type="button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-3 rounded-full btnModificarEstado">Modificar estado</button>
+                                        <button type="button" class="bg-yellow-700  text-white font-bold py-2 px-4 mt-3 rounded-full btnModificarEstado">Modificar estado</button>
                                         <!-- Este input hidden es necesario para enviar el ID de la comida junto con el nuevo estado -->
                                         <script>
                                         @if(session('success'))
@@ -60,10 +60,10 @@
                                 <div class="ml-auto">
                                     <div class="steps-container">
                                         <ul class="steps steps-horizontal lg:steps-vertical">
-                                            <li class="step @if(in_array($comida->estado, ['sin preparar', 'en cocina', 'enviando', 'entregado', 'pagado'])) step-primary @endif">Sin preparar</li>
-                                            <li class="step @if(in_array($comida->estado, ['en cocina', 'enviando', 'entregado', 'pagado'])) step-primary @endif">En cocina</li>
-                                            <li class="step @if(in_array($comida->estado, ['enviando', 'entregado', 'pagado'])) step-primary @endif">Enviando</li>
-                                            <li class="step @if(in_array($comida->estado, ['entregado', 'pagado'])) step-primary @endif">Entregado</li>
+                                            <li class="step @if(in_array($comida->estado, ['sin preparar', 'en cocina', 'enviando', 'entregado', 'pagado'])) step-warning @endif bg">Sin preparar</li>
+                                            <li class="step @if(in_array($comida->estado, ['en cocina', 'enviando', 'entregado', 'pagado'])) step-warning @endif">En cocina</li>
+                                            <li class="step @if(in_array($comida->estado, ['enviando', 'entregado', 'pagado'])) step-warning @endif">Enviando</li>
+                                            <li class="step @if(in_array($comida->estado, ['entregado', 'pagado'])) step-warning @endif">Entregado</li>
                                             <li class="step @if($comida->estado == 'pagado') step-primary @endif">Pagado</li>
                                         </ul>
                                     </div>

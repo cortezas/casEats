@@ -5,9 +5,9 @@
 @endsection
 
 @section('contenido')
-    <h1 class="text-4xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl dark:text-white ml-4 p-4">Reservar Mesa</h1>
+    <h1 class="text-4xl font-extrabold leading-none tracking-tight  md:text-5xl lg:text-6xl dark:text-white ml-4 p-4 ">Reservar Mesa</h1>
     <div class="flex p-6">
-        <div class="w-1/4 bg-gray-100 p-4 rounded-box" style="max-height: 80vh; overflow-y: auto;">
+        <div class="w-1/4 bg-gray-100 p-4 rounded-box border-2" style="max-height: 80vh; overflow-y: auto;">
             <h3 class="mb-4 font-semibold text-gray-900 dark:text-white"><b>Filtrar por Restaurante</b></h3>
             <ul class="text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white" id="lista-restaurantes">
                 @foreach($restaurantes as $restaurante)
@@ -30,8 +30,8 @@
                     <option value="sabado">Sábado</option>
                 </select>
             </div>
-            <div id="mapa-mesas" class="relative mt-4 border border-gray-400 rounded-md p-2 bg-gray-100">
-                <div id="mapa-mesas" class="relative mt-4 border border-gray-400 rounded-md p-2 bg-gray-100">
+            <div id="mapa-mesas" class="mapa-con-desenfoque relative mt-4 border border-gray-400 rounded-md p-2 bg-gray-100">
+                <div id="mapa-mesas" class=" relative mt-4 border border-gray-400 rounded-md p-2 bg-gray-100">
                     @foreach($mesas as $mesa)
                         <form method="POST" action="{{ route('modificar_estado_mesa', ['id_mesa' => $mesa->id_mesa]) }}" class="mb-2" id="formModificarMesa{{ $mesa->id_mesa }}">
                             @csrf

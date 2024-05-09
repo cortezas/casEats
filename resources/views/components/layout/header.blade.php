@@ -17,8 +17,8 @@
                        class="input input-bordered input-primary w-full max-w-xs"/>
             </div>
             @guest
-                <a href="{{route("login")}}" class="btn btn-active btn-primary">Iniciar Sesion</a>
-                <a href="{{route("register")}}" class="btn btn-active btn-primary">Registrarme</a>
+                <a href="{{route("login")}}" class="btn btn-active bg-yellow-700 text-white">Iniciar Sesion</a>
+                <a href="{{route("register")}}" class="btn btn-active bg-yellow-700 text-white">Registrarme</a>
 
             @endguest
 
@@ -41,7 +41,7 @@
                         </div>
                         <span class="text-info" id="cartSubtotal">Precio total: 0.00€</span>
                         <div class="card-actions">
-                            <a href="{{ route('carritos.carrito') }}" class="btn btn-primary btn-block">Ver carrito</a>
+                            <a href="{{ route('carritos.carrito') }}" class="btn bg-yellow-700 text-white btn-block">Ver carrito</a>
                         </div>
                     </div>
                 </div>

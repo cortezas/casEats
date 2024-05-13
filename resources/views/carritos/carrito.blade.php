@@ -64,9 +64,8 @@
                                 <input type="hidden" name="datosPedido" value="{{ json_encode($datosPedido) }}">
 
                                 <!-- Botón de enviar -->
-                                <div class="flex justify-cente">
-                                    <button type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 mr-1">Realizar pedido</button>
-                                    <button type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 ml-1">Pagar Online</button>
+                                <div class="flex justify-center">
+                                    <button type="submit" class="mt-6 w-full rounded-md bg-yellow-700 py-1.5 font-medium text-blue-50 mr-1">Realizar pedido</button>
                                 </div>
 
                                 <script>
@@ -184,12 +183,12 @@
             <div class="min-w-screen min-h-screen bg-gray-100 flex items-start justify-center px-5 pb-10 pt-16">
                 <div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style="max-width: 600px">
                     <div class="w-full pt-1 pb-5">
-                        <div class="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+                        <div class="bg-yellow-700 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
                             <i class="mdi mdi-credit-card-outline text-3xl"></i>
                         </div>
                     </div>
                     <div class="mb-10">
-                        <h1 class="text-center font-bold text-xl uppercase">Secure payment info</h1>
+                        <h1 class="text-center font-bold text-xl uppercase">Plataforma de pago</h1>
                     </div>
                     <div class="mb-3 flex -mx-2">
                         <div class="px-2">
@@ -206,34 +205,34 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="font-bold text-sm mb-2 ml-1">Name on card</label>
+                        <label class="font-bold text-sm mb-2 ml-1">Nombre de tarjeta</label>
                         <div>
                             <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Smith" type="text"/>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="font-bold text-sm mb-2 ml-1">Card number</label>
+                        <label class="font-bold text-sm mb-2 ml-1">Número de tarjeta</label>
                         <div>
                             <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text"/>
                         </div>
                     </div>
                     <div class="mb-3 -mx-2 flex items-end">
                         <div class="px-2 w-1/2">
-                            <label class="font-bold text-sm mb-2 ml-1">Expiration date</label>
+                            <label class="font-bold text-sm mb-2 ml-1">Fecha de expiración</label>
                             <div>
                                 <select class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
-                                    <option value="01">01 - January</option>
-                                    <option value="02">02 - February</option>
-                                    <option value="03">03 - March</option>
-                                    <option value="04">04 - April</option>
-                                    <option value="05">05 - May</option>
-                                    <option value="06">06 - June</option>
-                                    <option value="07">07 - July</option>
-                                    <option value="08">08 - August</option>
-                                    <option value="09">09 - September</option>
-                                    <option value="10">10 - October</option>
-                                    <option value="11">11 - November</option>
-                                    <option value="12">12 - December</option>
+                                    <option value="01">01 - Enero</option>
+                                    <option value="02">02 - Febrero</option>
+                                    <option value="03">03 - Marzo</option>
+                                    <option value="04">04 - Abril</option>
+                                    <option value="05">05 - Mayo</option>
+                                    <option value="06">06 - Junio</option>
+                                    <option value="07">07 - Julio</option>
+                                    <option value="08">08 - Agosto</option>
+                                    <option value="09">09 - Septiembre</option>
+                                    <option value="10">10 - Octubre</option>
+                                    <option value="11">11 - Noviembre</option>
+                                    <option value="12">12 - Diciembre</option>
                                 </select>
                             </div>
                         </div>
@@ -253,13 +252,13 @@
                         </div>
                     </div>
                     <div class="mb-10">
-                        <label class="font-bold text-sm mb-2 ml-1">Security code</label>
+                        <label class="font-bold text-sm mb-2 ml-1">Código de Seguridad</label>
                         <div>
                             <input class="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text"/>
                         </div>
                     </div>
                     <div>
-                        <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
+                        <button class="block w-full max-w-xs mx-auto bg-yellow-700  focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAGAR ONLINE</button>
                     </div>
                 </div>
             </div>

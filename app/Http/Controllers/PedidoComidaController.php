@@ -40,20 +40,6 @@ class PedidoComidaController extends Controller
         return view('jefe.listado_de_pedidos', ['comidasRestaurante' => $comidasRestaurante]);
     }
 
-    public function listadoDePedidosRepartidor()
-    {
-        // Obtiene el ID del repartidor asociado al usuario autenticado
-        $repartidorId = Auth::user()->REPARTIDOR_id_repartidor;
-
-        // Obtener los ID de los pedidos asociados al repartidor
-        $pedidosIds = Pedido::where('REPARTIDOR_id_repartidor', $repartidorId)->pluck('id_pedido')->toArray();
-
-        // Obtener los registros de PedidoComida asociados a los pedidos del repartidor
-        $pedidosComidaRepartidor = PedidoComida::whereIn('PEDIDO_id_pedido', $pedidosIds)->get();
-
-        // Retornar la vista con los registros de PedidoComida asociados al repartidor
-        return view('repartidor.gestion_de_productos_repar', ['pedidosComidaRepartidor' => $pedidosComidaRepartidor]);
-    }
 
     public function seguimientoPedidosRepartidor()
     {
@@ -67,6 +53,31 @@ class PedidoComidaController extends Controller
         $pedidosComidaRepartidor = PedidoComida::whereIn('PEDIDO_id_pedido', $pedidosIds)->get();
 
         // Retornar la vista con los registros de PedidoComida asociados al repartidor
+        return view('repartidor.seguimiento_de_pedido', ['pedidosComidaRepartidor' => $pedidosComidaRepartidor]);
+    }
+
+    public function seguimientoPedidoPorId(Request $request)
+    {
+        // Obtiene el ID del repartidor asociado al usuario autenticado
+        $repartidorId = Auth::user()->REPARTIDOR_id_repartidor;
+
+        // Obtener el valor del parámetro id_pedido de la consulta GET
+        $id_pedido = $request->input('id_pedido');
+
+        // Inicializar la consulta de pedidosComidaRepartidor
+        $query = PedidoComida::whereHas('pedido', function($query) use ($repartidorId) {
+            $query->where('REPARTIDOR_id_repartidor', $repartidorId);
+        });
+
+        // Si se proporcionó un id_pedido, agregar la condición al filtro
+        if ($id_pedido) {
+            $query->where('PEDIDO_id_pedido', $id_pedido);
+        }
+
+        // Ejecutar la consulta
+        $pedidosComidaRepartidor = $query->get();
+
+        // Retornar la vista con los resultados
         return view('repartidor.seguimiento_de_pedido', ['pedidosComidaRepartidor' => $pedidosComidaRepartidor]);
     }
 
@@ -102,6 +113,59 @@ class PedidoComidaController extends Controller
             'clienteName' => $clienteName]);
     }
 
+    public function listadoPedidoIdCliente(Request $request)
+    {
+        // Obtiene el ID del repartidor asociado al usuario autenticado
+        $clienteId= Auth::user()->CLIENTE_id_cliente;
+
+        $clienteName = Auth::user()->name;
+
+        // Obtener el valor del parámetro id_pedido de la consulta GET
+        $id_pedido = $request->input('id_pedido');
+
+        // Inicializar la consulta de pedidosComidaRepartidor
+        $query = PedidoComida::whereHas('pedido', function($query) use ($clienteId) {
+            $query->where('CLIENTE_id_cliente', $clienteId);
+        });
+
+        // Si se proporcionó un id_pedido, agregar la condición al filtro
+        if ($id_pedido) {
+            $query->where('PEDIDO_id_pedido', $id_pedido);
+        }
+
+        // Ejecutar la consulta
+        $pedidosComidaCliente = $query->get();
+
+        // Retornar la vista con los registros de PedidoComida asociados al repartidor
+        return view('cliente.mis_pedidos_cli', ['pedidosComidaCliente' => $pedidosComidaCliente,
+            'clienteName' => $clienteName]);
+    }
+
+    public  function seguimientoPedidosClienteId(Request $request)
+    {
+        // Obtiene el ID del repartidor asociado al usuario autenticado
+        $clienteId = Auth::user()->CLIENTE_id_cliente;
+
+        // Obtener el valor del parámetro id_pedido de la consulta GET
+        $id_pedido = $request->input('id_pedido');
+
+        // Inicializar la consulta de pedidosComidaRepartidor
+        $query = PedidoComida::whereHas('pedido', function($query) use ($clienteId) {
+            $query->where('CLIENTE_id_cliente', $clienteId);
+        });
+
+        // Si se proporcionó un id_pedido, agregar la condición al filtro
+        if ($id_pedido) {
+            $query->where('PEDIDO_id_pedido', $id_pedido);
+        }
+
+        // Ejecutar la consulta
+        $pedidosComidaCliente = $query->get();
+
+        // Retornar la vista con los registros de PedidoComida asociados al repartidor
+        return view('cliente.seguimiento_de_pedido_cli', ['pedidosComidaCliente' => $pedidosComidaCliente]);
+    }
+
 
 
     /**
@@ -134,6 +198,20 @@ class PedidoComidaController extends Controller
         return view('jefe.listado_de_pedidos', ['comidasRestaurante' => $comidasRestaurante]);
     }
 
+    public function listadoDePedidosRepartidor()
+    {
+        // Obtiene el ID del repartidor asociado al usuario autenticado
+        $repartidorId = Auth::user()->REPARTIDOR_id_repartidor;
+
+        // Obtener los ID de los pedidos asociados al repartidor
+        $pedidosIds = Pedido::where('REPARTIDOR_id_repartidor', $repartidorId)->pluck('id_pedido')->toArray();
+
+        // Obtener los registros de PedidoComida asociados a los pedidos del repartidor
+        $pedidosComidaRepartidor = PedidoComida::whereIn('PEDIDO_id_pedido', $pedidosIds)->get();
+
+        // Retornar la vista con los registros de PedidoComida asociados al repartidor
+        return view('repartidor.gestion_de_productos_repar', ['pedidosComidaRepartidor' => $pedidosComidaRepartidor]);
+    }
     public function listadoPorPedidoRepar(Request $request)
     {
         // Obtiene el ID del repartidor asociado al usuario autenticado
@@ -142,23 +220,24 @@ class PedidoComidaController extends Controller
         // Obtener el valor del parámetro id_pedido de la consulta GET
         $id_pedido = $request->input('id_pedido');
 
-        // Consultar todos los pedidos del repartidor
-        $query = Pedido::where('REPARTIDOR_id_repartidor', $repartidorId);
+        // Inicializar la consulta de pedidosComidaRepartidor
+        $query = PedidoComida::whereHas('pedido', function($query) use ($repartidorId) {
+            $query->where('REPARTIDOR_id_repartidor', $repartidorId);
+        });
 
-        // Si se proporciona un ID de pedido, aplicar el filtro
+        // Si se proporcionó un id_pedido, agregar la condición al filtro
         if ($id_pedido) {
-            $query->where('id_pedido', $id_pedido);
+            $query->where('PEDIDO_id_pedido', $id_pedido);
         }
 
-        // Obtener los ID de los pedidos del repartidor
-        $pedidosIds = $query->pluck('id_pedido')->toArray();
+        // Ejecutar la consulta
+        $pedidosComidaRepartidor = $query->get();
 
-        // Obtener los registros de PedidoComida asociados a los pedidos del repartidor
-        $pedidosComidaRepartidor = PedidoComida::whereIn('PEDIDO_id_pedido', $pedidosIds)->get();
-
-
+        // Retornar la vista con los resultados
         return view('repartidor.gestion_de_productos_repar', ['pedidosComidaRepartidor' => $pedidosComidaRepartidor]);
     }
+
+
 
     public function update(Request $request, $pedido_id_comida)
     {

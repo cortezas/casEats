@@ -45,29 +45,47 @@ Route::put('/pedido_de_venta/{pedido_id_comida}', [PedidoComidaController::class
 Route::get('/listado_de_pedidos/{id_pedido?}', [PedidoComidaController::class, 'listadoPorPedido'])->name('listado_de_pedidos')->middleware(CheckRole::class . ':dueño_restaurante');
 
 Route::get('/listado_de_pedidos', [PedidoComidaController::class, 'listadoDePedidos'])->name('jefe.listado_de_pedidos')->middleware(CheckRole::class . ':dueño_restaurante');
+
 Route::get('/mesas_reservadas_jefe', [MesaController::class, 'mesasJefe'])->name('jefe.mesas_reservadas_jefe')->middleware(CheckRole::class . ':dueño_restaurante');
 
 Route::put('/mesas_reservadas_jefe/{id_mesa}', [MesaController::class, 'gestionMesasJefe'])->name('modificar_estado_mesa_jefe')->middleware(CheckRole::class . ':dueño_restaurante');
+
 Route::put('/mesas_reservadas_jefe', [MesaController::class, 'limpiarMesas'])->name('limpiar_mesas_jefe')->middleware(CheckRole::class . ':dueño_restaurante');
+
 Route::put('/actualizar-precio/{id_comida}', [GestionDeProductosController::class, 'updatePrecio'])->name('actualizar_precio')->middleware(CheckRole::class . ':dueño_restaurante');
+
 Route::delete('/eliminar-comida/{id_comida}', [GestionDeProductosController::class, 'eliminarComida'])->name('eliminar_comida')->middleware(CheckRole::class . ':dueño_restaurante');
+
 Route::delete('/pedido_de_venta/{pedido_id_comida}', [PedidoComidaController::class, 'destroy'])->name('pedido_de_venta.destroy')->middleware(CheckRole::class . ':dueño_restaurante');
 
 
 // Rutas de repartidor
 
-Route::get('/seguimiento_de_pedido', [PedidoComidaController::class, 'seguimientoPedidosRepartidor'])->name('seguimiento_de_pedido')->middleware(CheckRole::class . ':repartidor');
+Route::get('/seguimiento_de_pedido', [PedidoComidaController::class, 'seguimientoPedidosRepartidor'])->name('repartidor.seguimiento_de_pedido')->middleware(CheckRole::class . ':repartidor');
+
+Route::get('/seguimiento_de_pedidoo/{id_pedido?}', [PedidoComidaController::class, 'seguimientoPedidoPorId'])->name('seguimiento_de_pedido')->middleware(CheckRole::class . ':repartidor');
+
 Route::get('/gestion_de_productos_repar', [PedidoComidaController::class, 'listadoDePedidosRepartidor'])->name('repartidor.gestion_de_productos_repar')->middleware(CheckRole::class . ':repartidor');
-Route::get('/gestion_de_productos_repar/{id_pedido?}', [PedidoComidaController::class, 'listadoPorPedidoRepar'])->name('repartidor.gestion_de_productos_repar')->middleware(CheckRole::class . ':repartidor');
+
+Route::get('/gestion_de_productos_reparr/{id_pedido?}', [PedidoComidaController::class, 'listadoPorPedidoRepar'])->name('gestion_de_productos_repar')->middleware(CheckRole::class . ':repartidor');
+
 Route::put('/seguimiento_de_pedido/{pedido_id_comida}', [PedidoComidaController::class, 'updateRepartidor'])->name('modificar_estado_repar')->middleware(CheckRole::class . ':repartidor');
 
 
 // Ruta de Cliente
 
-Route::get('/seguimiento_de_pedido_cli', [PedidoComidaController::class, 'seguimientoPedidosCliente'])->name('seguimiento_de_pedido_cli')->middleware(CheckRole::class . ':cliente');
-Route::get('/mis_pedidos_cli', [PedidoComidaController::class, 'listadoPedidosCliente'])->name('mis_pedidos_cli')->middleware(CheckRole::class . ':cliente');
+Route::get('/seguimiento_de_pedido_cli', [PedidoComidaController::class, 'seguimientoPedidosCliente'])->name('cliente.seguimiento_de_pedido_cli')->middleware(CheckRole::class . ':cliente');
+
+Route::get('/seguimiento_de_pedido_clii/{id_pedido?}', [PedidoComidaController::class, 'seguimientoPedidosClienteId'])->name('seguimiento_de_pedido_cli')->middleware(CheckRole::class . ':cliente');
+
+Route::get('/mis_pedidos_cli', [PedidoComidaController::class, 'listadoPedidosCliente'])->name('cliente.mis_pedidos_cli')->middleware(CheckRole::class . ':cliente');
+
+Route::get('/mis_pedidos_clii/{id_pedido?}', [PedidoComidaController::class, 'listadoPedidoIdCliente'])->name('mis_pedidos_cli')->middleware(CheckRole::class . ':cliente');
+
 Route::post('/realizar-pedido', [PedidoController::class, 'realizarPedido'])->name('realizar.pedido')->middleware(CheckRole::class . ':cliente');
+
 Route::get('/reservar_mesa_cli', [MesaController::class, 'index'])->name('reservar.mesa_cli')->middleware(CheckRole::class . ':cliente');
+
 Route::put('/reservar-mesa_cli/{id_mesa}', [MesaController::class, 'reservarMesa'])->name('modificar_estado_mesa')->middleware(CheckRole::class . ':cliente');
 
 

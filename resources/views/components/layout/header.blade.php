@@ -19,9 +19,7 @@
             @guest
                 <a href="{{route("login")}}" class="btn btn-active bg-yellow-700 text-white">Iniciar Sesion</a>
                 <a href="{{route("register")}}" class="btn btn-active bg-yellow-700 text-white">Registrarme</a>
-
             @endguest
-
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
                     <div class="indicator">
@@ -48,7 +46,6 @@
 
             </div>
             @auth
-
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
@@ -72,7 +69,6 @@
                         </form>
                     </li>
                 </ul>
-
             </div>
             @endauth
         </div>

@@ -1,5 +1,6 @@
 @extends("layouts.layout")
 
+
 @section('buscador')
     <!-- Ocultar la seccion de buscadores -->
 @endsection
@@ -77,3 +78,6 @@
     </div>
 @endsection
 
+@section('footer')
+    <!-- Ocultar la seccion de buscadores -->
+@endsection

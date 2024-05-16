@@ -16,12 +16,14 @@
 </head>
 <body class="flex flex-col min-h-screen">
 <x-layout.header />
-<!--<x-layout.footer />-->
 <main class="flex-grow">
     @section('buscador')
         <x-layout.buscador />
     @show
     @yield("contenido")
+        @section('footer')
+            <x-layout.footer />
+        @show
 </main>
 <!-- Agrega enlaces a tus archivos JavaScript -->
 <script src="{{ asset('js/scripts.js') }}"></script>

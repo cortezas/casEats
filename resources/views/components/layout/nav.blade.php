@@ -10,6 +10,14 @@
         </div>
         <div class="drawer-side">
             <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+            <!--
+            <ul class="menu p-4 w-80 min-h-full
+            @if(auth()->check() && auth()->user()->role === 'cliente') bg-amber-50
+            @elseif(auth()->check() && auth()->user()->role === 'dueño_restaurante') bg-base-200
+            @elseif(auth()->check() && auth()->user()->role === 'repartidor')bg-base-300
+            @endif
+            text-base-content">
+            -->
             <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
                 <!-- Sidebar content here -->
                 <li class="flex justify-center items-center">
@@ -59,6 +67,7 @@
                                 Reservar Mesa
                             </a>
                         </li>
+                    <!--
                         <li>
                             <a href="/perfil_cliente">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -68,6 +77,7 @@
                                 Mi Perfil
                             </a>
                         </li>
+                        -->
                     @elseif(auth()->check() && auth()->user()->role === 'dueño_restaurante')
                         <!-- Agrega aquí el código para el dueño de restaurante -->
                         <li class="mt-5">
@@ -118,12 +128,15 @@
                                 Gestión de Productos
                             </a>
                         </li>
-                        <li>
-                            <a href="/informes_de_ventas">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                                Informes de Ventas
-                            </a>
+                        <!--
+                            <li>
+                                <a href="/informes_de_ventas">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                                    Informes de Ventas
+                                </a>
+
                         </li>
+                        -->
                     @elseif(auth()->check() && auth()->user()->role === 'repartidor')
                         <li class="mt-5">
                             <a>

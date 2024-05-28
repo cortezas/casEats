@@ -122,13 +122,13 @@ class MesaController extends Controller
                 $mesa->save();
 
                 // Envía el correo electrónico de cancelación
-                /*
+                
                 Mail::send([], [], function (Message $message) use ($correoCliente) {
                     $message->to($correoCliente)
                         ->subject('Cancelación de reserva')
                         ->text('Su reserva ha sido cancelada. Sentimos los inconvenientes.');
                 });
-                */
+                
             }
             // Verificar si la acción es "aceptar"
             elseif ($accion === 'aceptar') {
@@ -142,6 +142,8 @@ class MesaController extends Controller
                 // Guardar los cambios en la base de datos
                 $mesa->save();
 
+                // Obtener la capacidad de la mesa desde la base de datos
+                $capacidad = $mesa->capacidad;
 
                 // Crear una nueva reserva
                 $reserva = new Reserva();
@@ -151,13 +153,14 @@ class MesaController extends Controller
                 $reserva->MESA_id_mesa = $id_mesa; // ID de la mesa
                 $reserva->save();
                 // Envía el correo electrónico de confirmación
-                /*
-                Mail::send([], [], function (Message $message) use ($correoCliente) {
+                
+                Mail::send([], [], function (Message $message) use ($correoCliente, $id_mesa, $capacidad) {
                     $message->to($correoCliente)
-                        ->subject('Confirmación de reserva')
-                        ->text('Su reserva ha sido confirmada con éxito. ¡Gracias por elegir nuestro restaurante!');
+                            ->subject('Confirmación de reserva')
+                            ->text("Su reserva ha sido confirmada con éxito. ¡Gracias por elegir nuestro restaurante!\n\nMesa: $id_mesa, Capacidad: $capacidad");
                 });
-                */
+                
+                
             }
             elseif ($accion === 'ocupada') {
                 // Cambiar el estado de la mesa a "ocupada"

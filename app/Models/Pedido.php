@@ -12,7 +12,7 @@ class Pedido extends Model
     protected $primaryKey = 'id_pedido'; // Para que no coja por defecto id al realizar la consulta
     protected $table="pedidos";
     public $timestamps = false; // Para que no busque update_at
-    protected $fillable=['id_pedido','fecha','estado'];
+    protected $fillable=['id_pedido','fecha','estado', 'pedido'];
 
     public function restaurante()
     {

@@ -26,6 +26,7 @@ class PedidoController extends Controller
         $pedido = new Pedido();
         $pedido->fecha = now();
         $pedido->estado = 'sin preparar';
+        $pedido->pagado = $request->pago_online ? 1 : 0;
         $pedido->CLIENTE_id_cliente = $request->user()->id;
         $pedido->REPARTIDOR_id_repartidor = $repartidor->id_repartidor;
         $pedido->save();

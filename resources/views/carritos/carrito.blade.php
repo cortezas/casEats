@@ -49,7 +49,7 @@
 
                     @auth
                         @if(auth()->check() && auth()->user()->role === 'cliente')
-                            <form method="POST" action="{{ route('realizar.pedido') }}">
+                            <form id="realizarPedidoForm" method="POST" action="{{ route('realizar.pedido') }}">
                                 @csrf
                                 @php
                                     // Obtener los datos del carrito desde localStorage
@@ -62,6 +62,8 @@
                                 @endphp
                                 <!-- Campo oculto para enviar el array -->
                                 <input type="hidden" name="datosPedido" value="{{ json_encode($datosPedido) }}">
+
+                                <input type="hidden" name="pago_online" id="pago_online" value="0">
 
                                 <!-- Botón de enviar -->
                                 <div class="flex justify-center">
@@ -258,7 +260,7 @@
                         </div>
                     </div>
                     <div>
-                        <button class="block w-full max-w-xs mx-auto bg-yellow-700  focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAGAR ONLINE</button>
+                        <button id="pagarOnlineButton" class="block w-full max-w-xs mx-auto bg-yellow-700  focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAGAR ONLINE</button>
                     </div>
                 </div>
             </div>
@@ -343,25 +345,18 @@
             </div>
         @endif
     </div>
-    <!-- Encuentra el lugar adecuado en tu vista Blade para colocar el script -->
+    
     <script>
         // Obtener el contenido del localStorage con clave "carrito"
+        document.getElementById('pagarOnlineButton').addEventListener('click', function() {
+                                document.getElementById('pago_online').value = '1';
+                                document.getElementById('realizarPedidoForm').submit();
+                            });
         var carritolist = localStorage.getItem('carrito');
 
         // Convertir la cadena JSON en un objeto JavaScript
         var carritoObj = JSON.parse(carritolist);
 
-        // Ahora puedes acceder a las propiedades del objeto
-        console.log(carritoObj);
-
-        // Por ejemplo, para acceder a la información del primer elemento del carrito
-        console.log("ID:", carritoObj[0].id);
-        console.log("Nombre:", carritoObj[0].nombre);
-        console.log("Descripción:", carritoObj[0].descripcion);
-        console.log("Cantidad:", carritoObj[0].cantidad);
-        // Y así sucesivamente para cada propiedad que desees acceder
-
-        // Asignar el objeto al campo oculto
         document.querySelector('input[name="datosPedido"]').value = JSON.stringify(carritoObj);
 
     </script>

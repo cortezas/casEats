@@ -61,7 +61,7 @@
                                     <div class="ml-auto flex items-center">
                                         <div class="p-4 bg-gray-100 flex justify-center items-center">
                                             <h2 class="text-xl font-semibold text-gray-900">Pagado&nbsp;</h2>
-                                            <input type="checkbox" class="form-checkbox h-6 w-6 text-green-500">
+                                            <input type="checkbox" class="form-checkbox h-6 w-6 text-green-500" @if($comida->pedido->pagado == 1) checked @endif>
                                         </div>
                                     </div>
                                 @endif

@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('role')->default('cliente');
+            $table->unsignedBigInteger('CLIENTE_id_cliente');
         });
+
     }
 
     /**

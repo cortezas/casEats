@@ -144,6 +144,7 @@ class MesaController extends Controller
 
                 // Obtener la capacidad de la mesa desde la base de datos
                 $capacidad = $mesa->capacidad;
+                $restaurante = $mesa->restaurante->nom_restaurante;
 
                 // Crear una nueva reserva
                 $reserva = new Reserva();
@@ -154,10 +155,10 @@ class MesaController extends Controller
                 $reserva->save();
                 // Envía el correo electrónico de confirmación
                 
-                Mail::send([], [], function (Message $message) use ($correoCliente, $id_mesa, $capacidad) {
+                Mail::send([], [], function (Message $message) use ($correoCliente, $id_mesa, $capacidad, $restaurante) {
                     $message->to($correoCliente)
                             ->subject('Confirmación de reserva')
-                            ->text("Su reserva ha sido confirmada con éxito. ¡Gracias por elegir nuestro restaurante!\n\nMesa: $id_mesa, Capacidad: $capacidad");
+                            ->text("Su reserva ha sido confirmada con éxito. ¡Gracias por elegir $restaurante !\n\nMesa: $id_mesa, Capacidad: $capacidad");
                 });
                 
                 

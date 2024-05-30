@@ -20,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Agregar el campo 'role' al array
+        'role',
+        'CLIENTE_id_cliente',
     ];
 
     /**

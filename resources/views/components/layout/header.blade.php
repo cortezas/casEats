@@ -1,5 +1,11 @@
 <header class="w-full p-8 ">
+    @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+        <div class="navbar bg-blue-300 rounded-xl">
+    @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+        <div class="navbar bg-green-300 rounded-xl">
+    @else
     <div class="navbar bg-amber-300 rounded-xl">
+    @endif
         @include('components.layout.nav')
         <div class="flex-1" >
             <a class="text-xl" href="/" >
@@ -8,7 +14,13 @@
         </div>
         <div class="flex-none gap-2">
             @auth
+                @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+                <div class="name mr-2 bg-blue-700 text-white p-2 rounded-full">
+                @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+                <div class="name mr-2 bg-green-700 text-white p-2 rounded-full">
+                @else
                 <div class="name mr-2 bg-yellow-700 text-white p-2 rounded-full">
+                @endif
                     <span>¡Bienvenido, <b>{{ auth()->user()->name }}</b>!</span>
                 </div>
             @endauth
@@ -17,8 +29,8 @@
                        class="input input-bordered input-primary w-full max-w-xs"/>
             </div>
             @guest
-                <a href="{{route("login")}}" class="btn btn-active bg-yellow-700 text-white">Iniciar Sesion</a>
-                <a href="{{route("register")}}" class="btn btn-active bg-yellow-700 text-white">Registrarme</a>
+                <a href="{{route('login')}}" class="btn btn-active bg-yellow-700 text-white">Iniciar Sesion</a>
+                <a href="{{route('register')}}" class="btn btn-active bg-yellow-700 text-white">Registrarme</a>
             @endguest
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -39,7 +51,13 @@
                         </div>
                         <span class="text-info" id="cartSubtotal">Precio total: 0.00€</span>
                         <div class="card-actions">
+                             @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+                             <a href="{{ route('carritos.carrito') }}" class="btn bg-blue-700 text-white btn-block">Ver carrito</a>
+                            @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+                            <a href="{{ route('carritos.carrito') }}" class="btn bg-green-700 text-white btn-block">Ver carrito</a>
+                            @else
                             <a href="{{ route('carritos.carrito') }}" class="btn bg-yellow-700 text-white btn-block">Ver carrito</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -55,13 +73,7 @@
                 </div>
                 <ul tabindex="0"
                     class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                    <li>
-                        <a class="justify-between">
-                            Modo Oscuro
-                            <input id="toggle-darkmode" type="checkbox" value="synthwave" class="toggle theme-controller" onchange="toggleDarkMode()">
 
-                        </a>
-                    </li>
                     <li>
                         <form action="{{route("logout")}}" method="post">
                             @csrf

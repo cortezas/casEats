@@ -25,7 +25,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ml-4">
             @foreach($comidasRestaurante as $comida)
                 @if($comida->validado == 0)
-                <div id="comida-{{ $comida->comida->id_comida }}" class="rounded-lg shadow-md overflow-hidden bg-white">
+                <div id="comida-{{ $comida->comida->id_comida }}" class="rounded-lg shadow-md overflow-hidden bg-blue-50">
                     <img class="w-full h-48 object-cover object-center" src="{{ asset($comida->comida->imagen) }}" alt="{{ $comida->comida->nom_comida }}">
                     <div class="p-4 flex flex-col">
                         <div class="flex items-center justify-between mb-2">
@@ -58,7 +58,7 @@
                             @csrf
                             @method('PUT')
                             <div class="flex items-center">
-                                <button type="button" class="btn bg-yellow-700 text-white font-bold py-2 px-4 mt-3 rounded-full btnValidarProducto">Crear Pedido de Venta</button>
+                                <button type="button" class="btn bg-blue-700 text-white font-bold py-2 px-4 mt-3 rounded-full btnValidarProducto">Crear Pedido de Venta</button>
                             </div>
                             <script>
                                 @if(session('success'))

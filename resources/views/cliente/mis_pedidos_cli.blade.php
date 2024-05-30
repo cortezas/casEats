@@ -20,15 +20,14 @@
                 @endif
             </div>
         </div>
-        <!-- Agrupar las comidas por ID de pedido -->
+
         <div class="p-4 grid grid-cols-2 gap-4">
-            <!-- Agrupar las comidas por ID de pedido -->
             @foreach($pedidosComidaCliente->groupBy('PEDIDO_id_pedido') as $pedido_id => $comidasPedido)
-                <div class="rounded-lg shadow-md overflow-hidden bg-white mb-4">
-                    <div class="p-4 bg-gray-200 bg-yellow-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Pedido ID: {{ $pedido_id }}</h2>
+                <div class="rounded-lg shadow-md overflow-hidden bg-white mb-4 border-2 border-gray-300">
+                    <div class="p-4 bg-amber-300 border-b border-gray-300">
+                        <h2 class="text-xl font-extrabold">Pedido ID: {{ $pedido_id }}</h2>
                     </div>
-                    <div class="border-b border-gray-200 p-4 bg-yellow-50">
+                    <div class="border-b border-gray-200 p-4 bg-gray-50">
                         <!-- Detalles de las comidas del pedido -->
                         @php
                             $precioTotalPedido = 0; // Variable para almacenar el precio total del pedido
@@ -41,7 +40,6 @@
                                         <p class="text-lg">{{ $comida->comida->nom_comida }}</p>
                                         <p class="text-gray-600 mt-2">Restaurante: {{ $comida->comida->restaurante->nom_restaurante }}</p>
                                     </div>
-                                    <!-- Contenedor para la lista de pasos -->
                                     <div class="ml-auto">
                                         <div class="rating" data-pedido-id="{{ $pedido_id }}">
                                             <input type="radio" name="rating-{{ $pedido_id }}" class="mask mask-star-2 bg-orange-400" />
@@ -58,8 +56,8 @@
                             @endphp
                         @endforeach
                     </div>
-                    <div class="p-4 bg-gray-100 bg-yellow-200">
-                        <h2 class="text-xl font-semibold text-gray-900">Precio total: {{ $precioTotalPedido }} €</h2>
+                    <div class="p-4 bg-amber-300 border-t border-gray-300">
+                        <h2 class="text-xl font-extrabold">Precio total: {{ $precioTotalPedido }} €</h2>
                     </div>
                 </div>
             @endforeach
@@ -69,7 +67,12 @@
                 <button class="join-item btn btn-square{{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
             @endfor
         </div>
+        
     </div>
+@endsection
+
+@section('footer')
+        <!-- Ocultar la seccion de buscadores -->
 @endsection
 
 <script>

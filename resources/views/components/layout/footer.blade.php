@@ -5,7 +5,13 @@
             <form class="flex justify-center mb-4">
                 <h6 class="footer-title mr-2 mt-2"><b>¡Únete a nosotros!</b></h6>
                 <input type="email" placeholder="Tu correo electrónico" class="mr-2 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+                <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Suscribirse</button>
+                @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+                <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Suscribirse</button>
+                @else
                 <button type="submit" class="bg-yellow-700 text-white px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">Suscribirse</button>
+                @endif
             </form>
             <span>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
         </div>

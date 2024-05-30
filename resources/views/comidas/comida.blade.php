@@ -28,7 +28,13 @@
                         <input id="precio_maximo" name="precio_maximo" type="number" class="border border-gray-300 rounded-md p-1" min="0" step="0.05" value="{{ request('precio_maximo', '19.95') }}">
                     </div>
                     <!-- Botón para aplicar el filtro -->
+                    @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+                    <button type="submit" class="btn bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-4">Aplicar precio</button>
+                    @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+                    <button type="submit" class="btn bg-green-700 text-white font-bold py-2 px-4 rounded-full mr-4">Aplicar precio</button>
+                    @else
                     <button type="submit" class="btn bg-yellow-700 text-white font-bold py-2 px-4 rounded-full mr-4">Aplicar precio</button>
+                    @endif
                 </form>
             </div>
 
@@ -37,7 +43,7 @@
                 <!-- Caso 1: Cards horizontales -->
                 <div class="ml-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     @foreach($comidas as $key => $comida)
-                        <div id="comida-{{ $comida->id_comida }}" class="card card-side bg-pink-50 shadow-xl mb-4 comida-item border-2" data-restaurante="{{ $comida->RESTAURANTE_id_restaurante }}" style="display: {{ $key < 4 ? 'block' : 'none' }}">
+                        <div id="comida-{{ $comida->id_comida }}" class="card card-side bg-white shadow-xl mb-4 comida-item border-2" data-restaurante="{{ $comida->RESTAURANTE_id_restaurante }}" style="display: {{ $key < 4 ? 'block' : 'none' }}">
                             <div class="flex flex-col justify-between h-full">
                                 <div>
                                     <div class="absolute top-0 right-0  bg-white rounded-bl-2xl rounded-tr-2xl">
@@ -61,7 +67,13 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-center p-2">
+                                    @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+                                    <button class="btn bg-blue-700  text-white font-bold py-2 px-4 rounded-full mr-4 dark:bg-gray-800" onclick="agregarAlCarrito({{ $comida->id_comida }})">Agregar al carrito</button>
+                                    @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+                                    <button class="btn bg-green-700  text-white font-bold py-2 px-4 rounded-full mr-4 dark:bg-gray-800" onclick="agregarAlCarrito({{ $comida->id_comida }})">Agregar al carrito</button>
+                                    @else
                                     <button class="btn bg-yellow-700  text-white font-bold py-2 px-4 rounded-full mr-4 dark:bg-gray-800" onclick="agregarAlCarrito({{ $comida->id_comida }})">Agregar al carrito</button>
+                                    @endif
                                     <div class="flex items-center">
                                         <button class="text-blue-500 hover:bg-blue-100 hover:text-white rounded-l px-3" onclick="decrementCantidad({{ $comida->id_comida }})">-</button>
                                         <input class="w-16 py-1 text-center border border-gray-300 rounded" id="cantidad{{ $comida->id_comida }}" value="1" min="1">
@@ -74,7 +86,13 @@
                 </div>
                 <div class="join ml-4 mt-4">
                     @for ($i = 1; $i <= ceil(count($comidas) / 12); $i++)
+                        @if(auth()->check() && auth()->user()->role === 'dueño_restaurante')
+                        <button class="join-item btn bg-blue-700 text-white {{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
+                        @elseif(auth()->check() && auth()->user()->role === 'repartidor')
+                        <button class="join-item btn bg-green-700 text-white {{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
+                        @else
                         <button class="join-item btn bg-yellow-700 text-white {{ $i == 1 ? 'active' : '' }}" data-index="{{ $i }}">{{ $i }}</button>
+                        @endif
                     @endfor
                 </div>
             </div>

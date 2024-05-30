@@ -7,7 +7,7 @@
 @section('contenido')
     <h1 class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white ml-4 p-4">Gestión de Mesas: {{$nombreRestaurante}}</h1>
     <div class="flex p-6">
-        <div class="w-1/4 bg-gray-100 p-4 rounded-box" style="max-height: 80vh; overflow-y: auto;">
+        <div class="w-1/4 bg-blue-100 p-4 rounded-box" style="max-height: 80vh; overflow-y: auto;">
             <h3 class="mb-4 font-semibold text-gray-900 dark:text-white"><b>Información</b></h3>
             <div class="bg-white rounded-lg shadow-md mb-4">
                 <div class="p-4 border-b border-gray-200">
@@ -40,7 +40,6 @@
 
 
         <div class="w-3/4 relative">
-            <!-- Contenedor del mapa -->
             <!-- Leyenda -->
             <div id="informacion" class="flex items-center">
                 <h3 class="font-semibold text-gray-900 dark:text-white ml-2"><b>* Todas las reservas de las mesas corresponden al horario de 20:30 a 22:30</b></h3>
@@ -51,7 +50,7 @@
                 <form method="POST" action="{{ route('limpiar_mesas_jefe') }}" class="mb-2 ml-auto" id="formLimpiarMesasJefe">
                     @csrf
                     @method('PUT')
-                    <button class="btn bg-yellow-700 text-white ml-auto">Limpiar Mesas</button>
+                    <button class="btn bg-blue-700 text-white ml-auto">Limpiar Mesas</button>
                     @if(session('success'))
                         <script>
                             Swal.fire({
@@ -62,8 +61,8 @@
                     @endif
                 </form>
             </div>
-            <div id="mapa-mesas" class="relative mt-4 border border-gray-400 rounded-md p-2 bg-gray-100">
-                <div id="mapa-mesas" class="relative mt-4 border border-gray-400 rounded-md p-2 bg-gray-100">
+            <div id="mapa-mesas" class="relative mt-4 border border-gray-400 rounded-md p-2 bg-blue-50">
+                <div id="mapa-mesas" class="relative mt-4 border border-gray-400 rounded-md p-2 bg-blue-50">
                     @foreach($mesas as $mesa)
                         <form method="POST" action="{{ route('modificar_estado_mesa_jefe', ['id_mesa' => $mesa->id_mesa]) }}" class="mb-2" id="formModificarMesaJefe{{ $mesa->id_mesa }}">
                             @csrf

@@ -19,7 +19,7 @@ class PedidoComidaController extends Controller
     {
         //
         // Obtiene el ID del restaurante asociado al usuario autenticado
-        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; // Suponiendo que el campo se llame 'restaurante_id'
+        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; 
 
         $comidasRestaurante = PedidoComida::where('RESTAURANTE_id_restaurante', $restauranteId)->get();
 
@@ -33,7 +33,7 @@ class PedidoComidaController extends Controller
     {
         //
         // Obtiene el ID del restaurante asociado al usuario autenticado
-        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; // Suponiendo que el campo se llame 'restaurante_id'
+        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; 
 
         $comidasRestaurante = PedidoComida::where('RESTAURANTE_id_restaurante', $restauranteId)->get();
 

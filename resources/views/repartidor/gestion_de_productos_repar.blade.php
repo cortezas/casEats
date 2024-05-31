@@ -30,7 +30,7 @@
                     </div>
                     <div class="border-b border-gray-200 p-4">
                         <!-- Detalles de las comidas del pedido -->
-                        @foreach($comidasPedido as $comida) <!-- Utiliza $comidasPedido en lugar de $pedidosComidaRepartidor -->
+                        @foreach($comidasPedido as $comida) <!-- Se utiliza $comidasPedido en lugar de $pedidosComidaRepartidor -->
                         <div class="flex items-center mb-4">
                             @if(isset($comida->comida))
                                 <img class="w-20 h-20 object-cover object-center rounded-lg mr-4" src="{{ asset($comida->comida->imagen) }}" alt="{{ $comida->comida->nom_comida }}">

@@ -18,7 +18,7 @@
     </div>
     <!-- Sección de navegación -->
     <div class="grid grid-cols-1 md:grid-cols-3  w-full">
-        <div class="md:w-1/3 mx-auto text-center"> <!-- Agrega la clase mx-auto y text-center aquí -->
+        <div class="md:w-1/3 mx-auto text-center">
             <h6 class="footer-title mb-4"><b>Explora</b></h6>
             <ul class="footer-links">
                 <li style="margin-bottom: 10px;"><a href="#">Términos y condiciones</a></li>
@@ -40,7 +40,7 @@
         </div>
 
         <!-- Sección de redes sociales -->
-        <div class="md:w-1/3 mx-auto" style="margin-bottom: 30px;"> <!-- Ajusta el margen inferior aquí -->
+        <div class="md:w-1/3 mx-auto" style="margin-bottom: 30px;">
             <h6 class="footer-title text-center"><b>Conéctate</b></h6>
             <div class="footer-social flex justify-center">
                 <ul class="footer-links flex justify-center">

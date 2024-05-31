@@ -275,8 +275,7 @@ function agregarAlCarrito(idComida) {
 
     localStorage.setItem('carrito', JSON.stringify(carrito));
     actualizarContenidoCarrito();
-    console.log(carrito); // Puedes eliminar esta línea, es solo para propósitos de depuración
-    // Guardar el contenido del carrito en el almacenamiento local
+    console.log(carrito); 
 }
 
 function actualizarContenidoCarrito() {
@@ -302,7 +301,7 @@ function limpiarCarrito(){
     document.getElementById('cartItemCount').textContent = '0 Productos';
     document.getElementById('cartSubtotal').textContent = 'Precio total: 0.00€';
 
-    // También puedes limpiar la variable carrito si lo deseas
+    
     carrito = [];
 }
 

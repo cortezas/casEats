@@ -13,10 +13,10 @@ class GestionDeProductosController extends Controller
         public function index()
     {
         // Obtiene el ID del restaurante asociado al usuario autenticado
-        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; // Suponiendo que el campo se llame 'restaurante_id'
+        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante;
         $nombreRestaurante = Auth::user()->name;
 
-        // Obtén las comidas asociadas al restaurante del usuario autenticado
+        // Comidas asociadas al restaurante del usuario autenticado
         $comidas = Comida::where('RESTAURANTE_id_restaurante', $restauranteId)->get();
 
         return view('jefe.gestion_de_productos', [

@@ -32,7 +32,7 @@ class MesaController extends Controller
 
     public function mesasJefe() {
         // Obtiene el ID del restaurante asociado al usuario autenticado
-        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; // Suponiendo que el campo se llame 'restaurante_id'
+        $restauranteId = Auth::user()->RESTAURANTE_id_restaurante; 
         $nombreRestaurante = Auth::user()->name;
 
         // Obtén las mesas asociadas al restaurante del usuario autenticado
@@ -97,7 +97,7 @@ class MesaController extends Controller
         } elseif ($dia === 'sabado') {
             $temp_infouser = $mesa->temp_infouser_sabado;
         } else {
-            // Manejar caso de día inválido, si es necesario
+            
         }
 
 
@@ -210,7 +210,7 @@ class MesaController extends Controller
             $mesa->save();
         }
 
-        // Puedes devolver una respuesta si es necesario
+        
         return redirect()->route('jefe.mesas_reservadas_jefe')->with('success', 'Reserva modificada. Notificando por correo al cliente');
 
     }
@@ -222,7 +222,7 @@ class MesaController extends Controller
         // Lógica para cambiar el estado de todas las mesas asociadas al restaurante a "libre"
         Mesa::where('RESTAURANTE_id_restaurante', $restauranteId)
             ->update(['estado_viernes' => 'libre', 'estado_sabado' => 'libre']);
-        // Puedes devolver una respuesta si es necesario
+        
         return redirect()->route('jefe.mesas_reservadas_jefe')->with('success', 'Ahora todas las mesas vuelven a estar libres');
     }
 

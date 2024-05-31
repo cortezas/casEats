@@ -75,7 +75,7 @@
                     class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
 
                     <li>
-                        <form action="{{route("logout")}}" method="post">
+                        <form action="{{route('logout')}}" method="post">
                             @csrf
                             <button type="submit">Cerrar Sesion</button>
                         </form>

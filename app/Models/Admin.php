@@ -19,7 +19,7 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Agregar el campo 'role' al array
+        'role', 
     ];
 
     /**

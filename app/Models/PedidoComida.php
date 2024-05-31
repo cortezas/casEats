@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class PedidoComida extends Model
 {
-    protected $table = 'pedido_comida'; // Especifica el nombre de la tabla si no sigue la convención de nombres de Eloquent
+    protected $table = 'pedido_comida'; 
 
 
 
-    protected $fillable = ['cantidad', 'COMIDA_id_comida', 'PEDIDO_id_pedido', 'validado', 'RESTAURANTE_id_restaurante']; // Especifica los campos que se pueden asignar masivamente
+    protected $fillable = ['cantidad', 'COMIDA_id_comida', 'PEDIDO_id_pedido', 'validado', 'RESTAURANTE_id_restaurante'];
 
-    public $timestamps = false; // Si no necesitas los campos de timestamps created_at y updated_at en esta tabla
+    public $timestamps = false; 
 
     // Relación con el modelo Comida
     public function comida()

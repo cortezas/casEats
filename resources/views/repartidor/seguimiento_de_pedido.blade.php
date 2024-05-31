@@ -31,7 +31,7 @@
                     </div>
                     <div class="border-b border-gray-200 p-4 bg-gray-50">
                         <!-- Detalles de las comidas del pedido -->
-                        @foreach($comidasPedido as $comida) <!-- Utiliza $comidasPedido en lugar de $pedidosComidaRepartidor -->
+                        @foreach($comidasPedido as $comida)
                         <div class="flex items-center mb-4">
 
                             @if(isset($comida->comida))
